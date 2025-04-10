@@ -130,7 +130,7 @@ const PotholeDetection = () => {
   const fetchRegionName = async (latitude, longitude) => {
     try {
       const response = await fetch(
-        https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyBehEghFrkAKZ7EE3z4YJ5dOHAbxMURZBQ
+        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyBehEghFrkAKZ7EE3z4YJ5dOHAbxMURZBQ`
       );
       const data = await response.json();
       if (data.results && data.results[0]) {
@@ -204,7 +204,7 @@ const PotholeDetection = () => {
       <form onSubmit={(e) => e.preventDefault()} className="complaint-form">
         <input
           type="text"
-          value={regionName || ${location.latitude}, ${location.longitude}}
+          value={regionName || `${location.latitude}, ${location.longitude}`}
           placeholder="Location"
           readOnly
           className="form-input"
@@ -231,20 +231,7 @@ const PotholeDetection = () => {
       </form>
       {image && <img src={image} alt="Uploaded" />}
       {isLoading && <p>Loading...</p>}
-      <div>
-<h2>Prediction:</h2>
-<ul>
-  {prediction.length > 0 ? (
-    prediction.map((pred, index) => (
-      <li key={index}>
-        {pred.className}: {pred.probability.toFixed(2)}
-      </li>
-    ))
-  ) : (
-    <p>No prediction yet</p>
-  )}
-</ul>
-</div>
+      
     </div>
   );
 };
